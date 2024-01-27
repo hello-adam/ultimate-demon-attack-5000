@@ -89,8 +89,9 @@ func _process(delta):
 
 func _apply_sync_state():
 	var s = buffered_sync.get_state(state_key)
-	if not s.valid and buffered_sync.got_initial_state:
-		push_warning("no valid sync state")
+	if not s.valid:
+		if buffered_sync.got_initial_state:
+			push_warning("no valid sync state")
 		return
 	
 	position = s.start_state["p"].lerp(s.end_state["p"], s.progress)

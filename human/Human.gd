@@ -21,6 +21,7 @@ func _process(delta):
 	
 	if multiplayer.is_server():
 		if interact_requested:
+			
 			dummy_interaction()
 			interact_requested = false
 

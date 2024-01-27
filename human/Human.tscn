@@ -39,7 +39,7 @@ mesh = SubResource("CapsuleMesh_q7mew")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5imib")
 
-[node name="InteractionArea" type="Area3D" parent="." groups=["cat"]]
+[node name="InteractionArea" type="Area3D" parent="." groups=["human"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("BoxShape3D_2dgco")
