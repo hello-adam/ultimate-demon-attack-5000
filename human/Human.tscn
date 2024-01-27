@@ -20,7 +20,7 @@ properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/replication_mode = 0
 
-[node name="Character" type="CharacterBody3D"]
+[node name="Human" type="CharacterBody3D"]
 script = ExtResource("1_eae4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
