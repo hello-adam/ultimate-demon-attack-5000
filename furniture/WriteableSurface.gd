@@ -7,7 +7,7 @@ var label_text:
 		return $Label3D.text
 
 func _ready():
-	label_text = "Example Text that could be written by player 2"
+	label_text = "Example Text that could be overwritten by player 2"
 
 func _process(delta):
 	pass

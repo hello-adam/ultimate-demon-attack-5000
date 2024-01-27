@@ -2,6 +2,11 @@ extends PlayerBase
 
 var popup_scn = preload("res://ui/PopupMessage.tscn")
 var popup_msg: PopupMessage
+var message:
+	set(val):
+		message = val
+	get:
+		return message
 
 func _ready():
 	super._ready()
@@ -22,8 +27,14 @@ func _process(delta):
 func _physics_process(delta):
 	super._physics_process(delta)
 
+func open_message_pad():
+	$Camera3D/CanvasLayer/TextEdit.show()
+	$Camera3D/CanvasLayer/TextEdit.grab_focus()
 
-func _on_write_detector_area_entered(area):
+
+func _on_text_edit_text_changed():
+	message = $Camera3D/CanvasLayer/TextEdit.text
+
+func _on_interaction_area_area_entered(area):
 	if area.get_parent().is_in_group("write_surface"):
-		print(area)
-		print(area.get_parent().label_text)
+		open_message_pad()
