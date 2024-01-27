@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dybb1fvckc6ey"]
+
+[ext_resource type="Script" path="res://cat/Cat.gd" id="1_f457e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ilpyy"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtg0h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_q7mew"]
+material = SubResource("StandardMaterial3D_qtg0h")
+radius = 0.25
+height = 1.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5imib"]
+properties/0/path = NodePath(".:nametag")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:pid")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 0
+
+[node name="Cat" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_f457e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00108209, 0.999999, 0, -0.999999, 0.00108209, 0, -0.464283, -0.283063)
+fov = 100.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ilpyy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_q7mew")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5imib")
+
+[node name="InitPopup" type="Popup" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="InitPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InitPopup/CenterContainer"]
+layout_mode = 2
+text = "You are a Cat"

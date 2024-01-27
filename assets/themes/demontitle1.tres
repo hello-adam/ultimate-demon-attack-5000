@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bahps2twlw7bf"]
+
+[ext_resource type="FontFile" uid="uid://doafv1py2jvlk" path="res://assets/fonts/GrenzeGotisch-VariableFont_wght.ttf" id="1_ncmnc"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_ncmnc")
+font_size = 42
+font_color = Color(0.772549, 0, 0, 1)
+outline_size = 7

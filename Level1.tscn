@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbyjjq47i081w"]
+
+[ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjen"]
+albedo_color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_udcmi"]
+material = SubResource("StandardMaterial3D_7fjen")
+size = Vector2(100, 100)
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_bfqtw")
+
+[node name="PlayerSpawnSync" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://human/Human.tscn", "res://cat/Cat.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
+
+[node name="3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 10, 0)
+
+[node name="4" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
+
+[node name="5" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ym3l2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_udcmi")
