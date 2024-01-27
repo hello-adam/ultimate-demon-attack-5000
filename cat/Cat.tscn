@@ -35,16 +35,6 @@ script = ExtResource("1_f457e")
 transform = Transform3D(1, 0, 0, 0, 0.00108209, 0.999999, 0, -0.999999, 0.00108209, 0, -0.464283, -0.283063)
 fov = 100.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
-
-[node name="TextEdit" type="TextEdit" parent="Camera3D/CanvasLayer"]
-visible = false
-offset_left = 415.0
-offset_top = 319.0
-offset_right = 745.0
-offset_bottom = 418.0
-text = "Example Text"
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ilpyy")
 
@@ -59,5 +49,4 @@ replication_config = SubResource("SceneReplicationConfig_5imib")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("BoxShape3D_shvi1")
 
-[connection signal="text_changed" from="Camera3D/CanvasLayer/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

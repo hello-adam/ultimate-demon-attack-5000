@@ -16,3 +16,6 @@ shape = SubResource("BoxShape3D_rerdw")
 
 [node name="Label3D" type="Label3D" parent="."]
 text = "You are a human"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.82011)
