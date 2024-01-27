@@ -4,6 +4,8 @@ const SPEED = 22.0
 const ROTATION_SPEED = 5.0
 const JUMP_VELOCITY = 10.0
 
+var mouse_sensitivity = 0.15
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity_vector = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
@@ -15,6 +17,7 @@ var buffered_sync: BufferedSync
 var jump_requested: bool = false
 var x_movement: float = 0.0
 var z_movement: float = 0.0
+var y_rotation: float = 0.0
 
 var last_x_input: float
 var last_z_input: float
@@ -48,6 +51,15 @@ func set_z_movement(amount: float):
 		return
 	z_movement = clampf(amount, -1.0, 1.0)
 
+@rpc("any_peer")
+func add_y_rotation(amount: float):
+	if multiplayer.get_remote_sender_id() != pid:
+		return
+	y_rotation += amount
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		add_y_rotation.rpc_id(1, -1 * deg_to_rad(event.relative.x * mouse_sensitivity))
 
 func _unhandled_input(event):
 	if multiplayer.get_unique_id() != pid:
@@ -91,18 +103,20 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	jump_requested = false
 	
-	# for simplicity, x movement will just rotate
-	if x_movement:
-		rotate_y(ROTATION_SPEED * delta * x_movement * -1.0)
+	rotation.y = y_rotation
 	
+	var movement := Vector3(0, 0, 0)
+	if x_movement:
+		movement += Vector3(x_movement, 0, 0)
 	if z_movement:
-		var v := Vector3(0, 0, z_movement * SPEED).rotated(Vector3(0, 1, 0), rotation.y)
-		velocity.z = v.z
-		velocity.x = v.x
-	else:
-		var v := Vector3(0, 0, 0)
-		velocity.z = v.z
-		velocity.x = v.x
+		movement += Vector3(0, 0, z_movement)
+	
+	if movement.length_squared() > 0:
+		movement = movement.rotated(Vector3(0, 1, 0), rotation.y)
+		movement = movement.normalized() * SPEED
+		
+	velocity.z = movement.z
+	velocity.x = movement.x
 
 	move_and_slide()
 	
