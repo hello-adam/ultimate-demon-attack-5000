@@ -19,7 +19,6 @@ func spawn_player(pid: int, nametag: String, player_data):
 	p.position = $SpawnPoints.get_children().pick_random().position
 	p.name = str(pid)
 	$Players.add_child(p, true)
-	p.set_player_data(player_data)
 
 func remove_player(pid):
 	var p = $Players.get_node(str(pid))

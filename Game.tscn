@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl6k1fmnn1mnh"]
+[gd_scene load_steps=9 format=3 uid="uid://dl6k1fmnn1mnh"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_tno48"]
 [ext_resource type="PackedScene" uid="uid://cbyjjq47i081w" path="res://Level1.tscn" id="2_3t1np"]
 [ext_resource type="Script" path="res://addons/jam_launch/core/JamConnect.gd" id="3_21l01"]
 [ext_resource type="PackedScene" uid="uid://bp045ebtvh6js" path="res://addons/jam_launch/ui/ChatConsole.tscn" id="3_arn8j"]
+[ext_resource type="Script" path="res://BufferedSync.gd" id="4_ejsra"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s2ksn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -74,6 +75,9 @@ size_flags_horizontal = 3
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.789213, 0.61412, 0, -0.61412, 0.789213, 0, 21.5553, 56.6207)
 current = true
+
+[node name="BufferedSync" type="Node" parent="."]
+script = ExtResource("4_ejsra")
 
 [node name="JamConnect" type="Node" parent="."]
 script = ExtResource("3_21l01")
