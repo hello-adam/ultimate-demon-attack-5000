@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dybb1fvckc6ey"]
+[gd_scene load_steps=7 format=3 uid="uid://dybb1fvckc6ey"]
 
 [ext_resource type="Script" path="res://cat/Cat.gd" id="1_f457e"]
 
@@ -23,6 +23,9 @@ properties/1/replication_mode = 2
 properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/replication_mode = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20j5f"]
+size = Vector3(1, 0.832886, 1)
 
 [node name="Cat" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -53,3 +56,12 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="InitPopup/CenterContainer"]
 layout_mode = 2
 text = "You are a Cat"
+
+[node name="WriteDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WriteDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0835571, 0)
+shape = SubResource("BoxShape3D_20j5f")
+
+[connection signal="area_entered" from="WriteDetector" to="." method="_on_write_detector_area_entered"]

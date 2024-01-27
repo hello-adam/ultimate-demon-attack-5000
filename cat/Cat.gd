@@ -16,3 +16,9 @@ func _process(delta):
 
 func _physics_process(delta):
 	super._physics_process(delta)
+
+
+func _on_write_detector_area_entered(area):
+	if area.get_parent().is_in_group("write_surface"):
+		print(area)
+		print(area.get_parent().label_text)

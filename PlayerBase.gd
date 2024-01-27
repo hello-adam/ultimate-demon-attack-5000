@@ -84,9 +84,9 @@ func _apply_sync_state():
 	if not s.valid and buffered_sync.got_initial_state:
 		push_warning("no valid sync state")
 		return
-	
-	position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
-	rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
+	if s.start_state != null and s.end_state != null:
+		position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
+		rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
 
 func _physics_process(delta):
 	if not multiplayer.is_server():
