@@ -10,9 +10,11 @@ var label_text:
 		return $Label3D.text
 
 @onready var camera: Camera3D = $Camera3D
+@onready var light: Node3D = $Light
 
 func _ready():
-	label_text = "Example Text that could be overwritten by player 2"
+	light.visible = false
+	label_text = ""
 
 func _process(delta):
 	pass
@@ -20,3 +22,7 @@ func _process(delta):
 @rpc
 func sync_label_text(text):
 	label_text = text
+
+func set_illuminate(active: bool):
+	print("illuminated ", active)
+	light.visible = active

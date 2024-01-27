@@ -4,7 +4,6 @@ var popup_scn = preload("res://ui/PopupMessage.tscn")
 var popup_msg: PopupMessage
 
 @onready var interact_area: Area3D = $InteractionArea
-@onready var camera: Camera3D = $Camera3D
 
 func _ready():
 	super._ready()

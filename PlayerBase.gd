@@ -25,11 +25,13 @@ var last_z_input: float = 0.0
 
 var state_key: String
 
+@onready var camera: Camera3D = $Camera3D
+
 func _ready():
 	buffered_sync = get_node("../../../BufferedSync")
 	state_key = "%d" % pid
 	if multiplayer.get_unique_id() == pid:
-		$Camera3D.make_current()
+		camera.make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 @rpc("any_peer")
@@ -73,21 +75,26 @@ func _unhandled_input(event):
 	if multiplayer.get_unique_id() != pid:
 		return
 	
+	if interacting:
+		return
+		
 	if event.is_action_pressed("ui_accept"):
 		do_interact.rpc_id(1)
 
 func _process(delta):
 	if multiplayer.get_unique_id() != pid:
 		return
-	var x_input = Input.get_axis("ui_left", "ui_right")
-	if x_input != last_x_input:
-		set_x_movement.rpc_id(1, x_input)
-		last_x_input = x_input
 	
-	var z_input = Input.get_axis("ui_up", "ui_down")
-	if z_input != last_z_input:
-		set_z_movement.rpc_id(1, z_input)
-		last_z_input = z_input
+	if not interacting:
+		var x_input = Input.get_axis("ui_left", "ui_right")
+		if x_input != last_x_input:
+			set_x_movement.rpc_id(1, x_input)
+			last_x_input = x_input
+		
+		var z_input = Input.get_axis("ui_up", "ui_down")
+		if z_input != last_z_input:
+			set_z_movement.rpc_id(1, z_input)
+			last_z_input = z_input
 
 func _apply_sync_state():
 	var s = buffered_sync.get_state(state_key)

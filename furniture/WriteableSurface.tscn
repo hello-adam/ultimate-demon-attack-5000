@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://furniture/WriteableSurface.gd" id="1_c5v5b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rerdw"]
-size = Vector3(4, 4, 0.1)
+size = Vector3(2, 3, 0.1)
 
 [node name="WriteableSurface" type="Node3D" groups=["write_surface"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -12,10 +12,22 @@ script = ExtResource("1_c5v5b")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.469244, 0)
 shape = SubResource("BoxShape3D_rerdw")
 
 [node name="Label3D" type="Label3D" parent="."]
-text = "You are a human"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.384523, 0)
+text = "This is the label text"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.82011)
+
+[node name="Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.986937, -0.161104, 0, 0.161104, 0.986937, 0, -1.94682, 0.81771)
+light_color = Color(1, 1, 0.615686, 1)
+light_energy = 2.0
+light_volumetric_fog_energy = 2.0
+spot_range = 2.0
+spot_attenuation = 1.62451
+spot_angle = 40.89
+spot_angle_attenuation = 1.86607

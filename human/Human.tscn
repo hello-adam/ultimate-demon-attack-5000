@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://human/Human.gd" id="1_eae4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ilpyy"]
+radius = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtg0h"]
 
@@ -27,7 +28,7 @@ size = Vector3(2.25, 2, 2.5)
 script = ExtResource("1_eae4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550274, -0.598151)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550274, -0.580428)
 fov = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

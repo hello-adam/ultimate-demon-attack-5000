@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbyjjq47i081w"]
+[gd_scene load_steps=8 format=3 uid="uid://cbyjjq47i081w"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
 [ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
 [ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="3_5u55u"]
+[ext_resource type="PackedScene" uid="uid://bpcoq3fg4xlly" path="res://furniture/Cube.tscn" id="3_d3g6n"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
 
@@ -56,4 +57,18 @@ shape = SubResource("WorldBoundaryShape3D_ym3l2")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_udcmi")
 
-[node name="WriteableSurface" parent="." instance=ExtResource("3_5u55u")]
+[node name="Stuff" type="Node3D" parent="."]
+
+[node name="Cube" parent="Stuff" instance=ExtResource("3_d3g6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47761, -1.55054)
+
+[node name="WriteableSurface" parent="Stuff" instance=ExtResource("3_5u55u")]
+
+[node name="WriteableSurface2" parent="Stuff" instance=ExtResource("3_5u55u")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 2, -1.503)
+
+[node name="WriteableSurface3" parent="Stuff" instance=ExtResource("3_5u55u")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 2, -3.08)
+
+[node name="WriteableSurface4" parent="Stuff" instance=ExtResource("3_5u55u")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 2, -1.417)
