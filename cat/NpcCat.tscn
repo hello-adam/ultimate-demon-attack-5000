@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://nwwdei84pokc"]
+
+[ext_resource type="PackedScene" uid="uid://dybb1fvckc6ey" path="res://cat/Cat.tscn" id="1_kkm20"]
+[ext_resource type="Script" path="res://cat/NpcCat.gd" id="2_roabr"]
+
+[node name="NpcCat" instance=ExtResource("1_kkm20")]
+script = ExtResource("2_roabr")
+
+[node name="InteractionArea" parent="." index="4" groups=["npc"]]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbyjjq47i081w"]
+[gd_scene load_steps=6 format=3 uid="uid://cbyjjq47i081w"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
+[ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
 
@@ -15,10 +16,16 @@ size = Vector2(100, 100)
 script = ExtResource("1_bfqtw")
 
 [node name="PlayerSpawnSync" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://human/Human.tscn", "res://cat/Cat.tscn")
+_spawnable_scenes = PackedStringArray("res://human/Human.tscn", "res://cat/Cat.tscn", "res://cat/NpcCat.tscn")
 spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node3D" parent="."]
+
+[node name="NpcCat" parent="Players" instance=ExtResource("2_gsx1l")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.1784, 24.3646)
+
+[node name="NpcCat2" parent="Players" instance=ExtResource("2_gsx1l")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.4111, 4.1784, -31.8762)
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
