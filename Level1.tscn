@@ -27,6 +27,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.1
 [node name="NpcCat2" parent="Players" instance=ExtResource("2_gsx1l")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 23.4111, 4.1784, -31.8762)
 
+[node name="NpcCat3" parent="Players" instance=ExtResource("2_gsx1l")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -27.5074, 4.1784, -1.05054)
+
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="SpawnPoints"]
