@@ -1,9 +1,14 @@
 extends PlayerBase
 
+var popup_scn = preload("res://ui/PopupMessage.tscn")
+var popup_msg: PopupMessage
+
 func _ready():
 	super._ready()
 	if multiplayer.get_unique_id() == pid:
-		$InitPopup.popup_centered_ratio.call_deferred(0.5)
+		popup_msg = popup_scn.instantiate()
+		add_child(popup_msg)
+		popup_msg.show_message.call_deferred("You are a Cat.\n\nThe Hoomin must know the truth.\n\nTell him with graffiti.")
 
 func _input(event):
 	super._input(event)

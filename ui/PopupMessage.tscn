@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdtxtcdtoqb8d"]
+
+[ext_resource type="Script" path="res://ui/PopupMessage.gd" id="1_pfldu"]
+
+[node name="PopupMessage" type="Popup"]
+size = Vector2i(500, 500)
+visible = true
+script = ExtResource("1_pfldu")
+
+[node name="M" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="VB" type="VBoxContainer" parent="M"]
+layout_mode = 2
+
+[node name="Msg" type="Label" parent="M/VB"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "This is a test message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Escape" type="Label" parent="M/VB"]
+layout_mode = 2
+text = "[press ESC to continue]"
+horizontal_alignment = 1
+
+[node name="Yes" type="Button" parent="M/VB"]
+visible = false
+layout_mode = 2
+text = "Yes"
+
+[connection signal="pressed" from="M/VB/Yes" to="." method="_on_yes_pressed"]

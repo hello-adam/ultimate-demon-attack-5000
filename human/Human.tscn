@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://8vvkqmrl52x8"]
+[gd_scene load_steps=7 format=3 uid="uid://8vvkqmrl52x8"]
 
 [ext_resource type="Script" path="res://human/Human.gd" id="1_eae4f"]
 
@@ -20,6 +20,9 @@ properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/replication_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dgco"]
+size = Vector3(2.25, 2, 2.25)
+
 [node name="Human" type="CharacterBody3D"]
 script = ExtResource("1_eae4f")
 
@@ -36,15 +39,7 @@ mesh = SubResource("CapsuleMesh_q7mew")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5imib")
 
-[node name="InitPopup" type="Popup" parent="."]
+[node name="InteractionArea" type="Area3D" parent="." groups=["human"]]
 
-[node name="CenterContainer" type="CenterContainer" parent="InitPopup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="InitPopup/CenterContainer"]
-layout_mode = 2
-text = "You are a Human"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("BoxShape3D_2dgco")

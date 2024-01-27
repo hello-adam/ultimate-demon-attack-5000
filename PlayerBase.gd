@@ -14,7 +14,8 @@ var nametag: String = ""
 
 var buffered_sync: BufferedSync
 
-var jump_requested: bool = false
+var interacting: bool = false
+var interact_requested: bool = false
 var x_movement: float = 0.0
 var z_movement: float = 0.0
 var y_rotation: float = 0.0
@@ -32,10 +33,10 @@ func _ready():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 @rpc("any_peer")
-func do_a_jump():
+func do_interact():
 	if multiplayer.get_remote_sender_id() != pid:
 		return
-	jump_requested = true
+	interact_requested = true
 	
 @rpc("any_peer")
 func set_x_movement(amount: float):
@@ -55,7 +56,14 @@ func add_y_rotation(amount: float):
 		return
 	y_rotation += amount
 
+@rpc("call_local")
+func set_interacting(active: bool):
+	interacting = active
+
 func _input(event):
+	# don't do physics if interacting
+	if interacting:
+		return
 	if event is InputEventMouseMotion:
 		add_y_rotation.rpc_id(1, -1 * deg_to_rad(event.relative.x * mouse_sensitivity))
 
@@ -64,7 +72,7 @@ func _unhandled_input(event):
 		return
 	
 	if event.is_action_pressed("ui_accept"):
-		do_a_jump.rpc_id(1)
+		do_interact.rpc_id(1)
 
 func _process(delta):
 	if multiplayer.get_unique_id() != pid:
@@ -81,8 +89,9 @@ func _process(delta):
 
 func _apply_sync_state():
 	var s = buffered_sync.get_state(state_key)
-	if not s.valid and buffered_sync.got_initial_state:
-		push_warning("no valid sync state")
+	if not s.valid:
+		if buffered_sync.got_initial_state:
+			push_warning("no valid sync state")
 		return
 	if s.start_state != null and s.end_state != null:
 		position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
@@ -92,14 +101,14 @@ func _physics_process(delta):
 	if not multiplayer.is_server():
 		_apply_sync_state()
 		return
-		
+	
+	# don't do physics if interacting
+	if interacting:
+		return
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += gravity_vector * gravity * delta
-		
-	if jump_requested and is_on_floor():
-		velocity.y = jump_velocity
-	jump_requested = false
 	
 	rotation.y = y_rotation
 	
