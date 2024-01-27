@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbyjjq47i081w"]
+[gd_scene load_steps=7 format=3 uid="uid://cbyjjq47i081w"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
 [ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
+[ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="3_5u55u"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
 
@@ -51,3 +52,5 @@ shape = SubResource("WorldBoundaryShape3D_ym3l2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_udcmi")
+
+[node name="WriteableSurface" parent="." instance=ExtResource("3_5u55u")]

@@ -15,3 +15,4 @@ script = ExtResource("1_c5v5b")
 shape = SubResource("BoxShape3D_rerdw")
 
 [node name="Label3D" type="Label3D" parent="."]
+text = "You are a human"
