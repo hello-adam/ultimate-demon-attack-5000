@@ -21,13 +21,13 @@ properties/2/spawn = true
 properties/2/replication_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2dgco"]
-size = Vector3(2.25, 2, 2.25)
+size = Vector3(2.25, 2, 2.5)
 
 [node name="Human" type="CharacterBody3D"]
 script = ExtResource("1_eae4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.588861, -0.598151)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.550274, -0.598151)
 fov = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -40,6 +40,7 @@ mesh = SubResource("CapsuleMesh_q7mew")
 replication_config = SubResource("SceneReplicationConfig_5imib")
 
 [node name="InteractionArea" type="Area3D" parent="." groups=["human"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7378)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 shape = SubResource("BoxShape3D_2dgco")

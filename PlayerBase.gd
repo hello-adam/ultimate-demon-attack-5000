@@ -9,7 +9,7 @@ var mouse_sensitivity = 0.15
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity_vector = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
-var pid: int
+var pid: int = -1
 var nametag: String = ""
 
 var buffered_sync: BufferedSync
@@ -20,8 +20,8 @@ var x_movement: float = 0.0
 var z_movement: float = 0.0
 var y_rotation: float = 0.0
 
-var last_x_input: float
-var last_z_input: float
+var last_x_input: float = 0.0
+var last_z_input: float = 0.0
 
 var state_key: String
 
@@ -61,6 +61,8 @@ func set_interacting(active: bool):
 	interacting = active
 
 func _input(event):
+	if multiplayer.get_unique_id() != pid:
+		return
 	# don't do physics if interacting
 	if interacting:
 		return
