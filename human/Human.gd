@@ -40,6 +40,7 @@ func _process(delta):
 func pet_the_cat(target):
 	print("petting the cat")
 	set_interacting.rpc(true)
+	target.receive_pets(2.0)
 	do_pet_the_cat.rpc_id(pid)
 	await get_tree().create_timer(1.7).timeout
 	set_interacting.rpc(false)

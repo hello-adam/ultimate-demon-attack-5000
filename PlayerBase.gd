@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name PlayerBase
 
-var speed = 22.0
+var speed = 10.0
 var jump_velocity = 10.0
 
 var mouse_sensitivity = 0.15
