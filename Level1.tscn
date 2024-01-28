@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
 [ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
-[ext_resource type="PackedScene" uid="uid://cxx67y04nr5uu" path="res://cat/TrueCat.tscn" id="3_5ej56"]
+[ext_resource type="PackedScene" path="res://cat/TrueCat.tscn" id="3_5ej56"]
 [ext_resource type="PackedScene" uid="uid://cuap4eaa1w70p" path="res://hallway_part.tscn" id="4_j1rfc"]
 [ext_resource type="PackedScene" uid="uid://cfou06eauq0s2" path="res://furniture/PaintCan.tscn" id="6_gs33b"]
 
@@ -121,6 +121,6 @@ _spawnable_scenes = PackedStringArray("res://furniture/PaintCan.tscn")
 spawn_path = NodePath("../Paint")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.5
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

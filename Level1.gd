@@ -42,3 +42,7 @@ func _on_spawn_timer_timeout():
 	var paint = paint_scn.instantiate()
 	paint.position = Vector3(randf_range(-100, 100), 0.0, randf_range(-100, 100))
 	$Paint.add_child(paint, true)
+	
+	var p2 = paint_scn.instantiate()
+	p2.position = Vector3(randf_range(-100, 100), 0.0, randf_range(-100, 100))
+	$Paint.add_child(p2, true)
