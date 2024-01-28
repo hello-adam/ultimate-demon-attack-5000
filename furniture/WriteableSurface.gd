@@ -24,5 +24,4 @@ func sync_label_text(text):
 	label_text = text
 
 func set_illuminate(active: bool):
-	print("illuminated ", active)
 	light.visible = active

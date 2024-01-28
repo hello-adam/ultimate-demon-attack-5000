@@ -5,9 +5,9 @@ var cat_scn = preload("res://cat/Cat.tscn")
 
 var human_spawned = false
 
-func spawn_player(pid: int, nametag: String, player_data):
-	
-	var p: CharacterBody3D
+func spawn_player(pid: int, nametag: String):
+	print("spawning player ", pid, " ", nametag)
+	var p = null
 	if human_spawned:
 		p = cat_scn.instantiate()
 	else:
@@ -21,9 +21,11 @@ func spawn_player(pid: int, nametag: String, player_data):
 	$Players.add_child(p, true)
 
 func remove_player(pid):
-	var p = $Players.get_node(str(pid))
-	if p != null:
-		p.queue_free()
+	print("removing player ", pid)
+	for p in $Players.get_children():
+		if p.pid == pid:
+			p.queue_free()
+			return
 
 func get_players():
 	return $Players.get_children()

@@ -24,20 +24,21 @@ properties/2/spawn = true
 properties/2/replication_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shvi1"]
-size = Vector3(1.25, 3, 1)
+size = Vector3(1.25, 1.5, 3)
 
 [node name="Cat" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_f457e")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.154279, 0.988027, 0, -0.988027, 0.154279, 0, -0.464283, -0.283063)
+transform = Transform3D(1, 0, 0, 0, 0.97075, -0.240092, 0, 0.240092, 0.97075, 0, 0.265004, -0.509278)
 fov = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ilpyy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_q7mew")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
@@ -47,7 +48,7 @@ replication_config = SubResource("SceneReplicationConfig_5imib")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.619404, 2.7075e-08)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00649232, 2.83789e-10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.740684, -0.519557)
 shape = SubResource("BoxShape3D_shvi1")
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

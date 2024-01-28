@@ -1,15 +1,18 @@
 extends PlayerBase
 
 var popup_scn = preload("res://ui/PopupMessage.tscn")
-var popup_msg: PopupMessage
+var popup_msg: PopupMessage:
+	get:
+		if popup_msg == null:
+			popup_msg = popup_scn.instantiate()
+			add_child(popup_msg)
+		return popup_msg
 
 @onready var interact_area: Area3D = $InteractionArea
 
 func _ready():
 	super._ready()
 	if multiplayer.get_unique_id() == pid:
-		popup_msg = popup_scn.instantiate()
-		add_child(popup_msg)
 		popup_msg.show_message("You are a Human.\n\nYou must find your cat.\nPet cats to stay lucid.\n\nDon't pet weird cats.")
 
 func _input(event):
@@ -21,7 +24,7 @@ func _unhandled_input(event):
 func _process(delta):
 	super._process(delta)
 	
-	if multiplayer.is_server():
+	if multiplayer.is_server() and not interacting:
 		if interact_requested:
 			interact_requested = false
 			
@@ -31,10 +34,56 @@ func _process(delta):
 						pet_the_cat(target.get_parent())
 						return
 					else:
-						pass # do the swap
+						body_swap(target.get_parent())
 						return
 					
-			dummy_interaction()
+			#dummy_interaction()
+
+func body_swap(other):
+	print("body swapping")
+	set_interacting.rpc(true)
+	other.set_interacting.rpc(true)
+	
+	var old_hoomin = pid
+	var new_hoomin = other.pid
+	
+	# todo: swap animation
+	await get_tree().create_timer(0.5)
+	
+	sync_body_swap.rpc(other.get_path())
+	
+	await get_tree().create_timer(0.25)
+	
+	show_msg.rpc_id(new_hoomin, "You are a Human.\n\nYou must find your cat.\nPet cats to stay lucid.\n\nDon't pet weird cats.")
+	other.show_msg.rpc_id(old_hoomin, "You tried to pet a weird cat.\n\nNow you are a weird cat.")
+	
+	set_interacting.rpc(false)
+	other.set_interacting.rpc(false)
+	print("done body swapping")
+
+@rpc("reliable")
+func show_msg(msg: String):
+	if pid != multiplayer.get_unique_id():
+		return
+	popup_msg.show_message(msg)
+
+@rpc("call_local", "reliable")
+func sync_body_swap(other_path: String):
+	var other = get_node(other_path)
+	if other == null:
+		push_error("cannot get other node")
+		return
+	
+	var my_pid = pid
+	pid = other.pid
+	state_key = "%d" % pid
+	other.pid = my_pid
+	other.state_key = "%d" % my_pid
+	
+	if pid == multiplayer.get_unique_id():
+		camera.make_current()
+	elif other.pid == multiplayer.get_unique_id():
+		other.camera.make_current()
 
 func pet_the_cat(target):
 	print("petting the cat")

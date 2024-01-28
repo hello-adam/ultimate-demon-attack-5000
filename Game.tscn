@@ -83,8 +83,5 @@ script = ExtResource("4_ejsra")
 script = ExtResource("3_21l01")
 
 [connection signal="pressed" from="HUD/M/HB/VB/Console" to="." method="_on_console_pressed"]
-[connection signal="game_db_async_result" from="JamConnect" to="." method="_on_jam_connect_game_db_async_result"]
 [connection signal="player_disconnected" from="JamConnect" to="." method="_on_jam_connect_player_disconnected"]
 [connection signal="player_verified" from="JamConnect" to="." method="_on_jam_connect_player_verified"]
-[connection signal="server_pre_ready" from="JamConnect" to="." method="_on_jam_connect_server_pre_ready"]
-[connection signal="server_shutting_down" from="JamConnect" to="." method="_on_jam_connect_server_shutting_down"]

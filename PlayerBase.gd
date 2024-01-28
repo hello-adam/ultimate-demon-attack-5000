@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity_vector = ProjectSettings.get_setting("physics/3d/default_gravity_vector")
 
 var pid: int = -1
+
 var nametag: String = ""
 
 var buffered_sync: BufferedSync
@@ -19,6 +20,7 @@ var interact_requested: bool = false
 var x_movement: float = 0.0
 var z_movement: float = 0.0
 var y_rotation: float = 0.0
+var x_rotation: float = 0.0
 
 var last_x_input: float = 0.0
 var last_z_input: float = 0.0
@@ -31,6 +33,7 @@ func _ready():
 	buffered_sync = get_node("../../../BufferedSync")
 	state_key = "%d" % pid
 	if multiplayer.get_unique_id() == pid:
+		print("making current in ", get_path())
 		camera.make_current()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -58,6 +61,13 @@ func add_y_rotation(amount: float):
 		return
 	y_rotation += amount
 
+@rpc("any_peer")
+func add_x_rotation(amount: float):
+	if multiplayer.get_remote_sender_id() != pid:
+		return
+	x_rotation += amount
+	x_rotation = clampf(x_rotation, -0.2*PI, .2*PI)
+
 @rpc("call_local")
 func set_interacting(active: bool):
 	interacting = active
@@ -70,6 +80,8 @@ func _input(event):
 		return
 	if event is InputEventMouseMotion:
 		add_y_rotation.rpc_id(1, -1 * deg_to_rad(event.relative.x * mouse_sensitivity))
+		
+		add_x_rotation.rpc_id(1, -1 * deg_to_rad(event.relative.y * mouse_sensitivity))
 
 func _unhandled_input(event):
 	if multiplayer.get_unique_id() != pid:
@@ -103,8 +115,11 @@ func _apply_sync_state():
 			push_warning("no valid sync state")
 		return
 	if s.start_state != null and s.end_state != null:
+		var all_rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
 		position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
-		rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
+		rotation = Vector3(0, all_rotation.y, 0)
+		if camera and multiplayer.get_unique_id() == pid:
+			camera.rotation = Vector3(all_rotation.x, 0, 0)
 
 func _physics_process(delta):
 	if not multiplayer.is_server():
@@ -138,5 +153,5 @@ func _physics_process(delta):
 	
 	buffered_sync.amend_server_state(state_key, {
 		"p": position,
-		"r": rotation
+		"r": rotation + Vector3(x_rotation, 0, 0),
 	})
