@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0a1lv3fh2llm"]
+[gd_scene load_steps=7 format=3 uid="uid://d0a1lv3fh2llm"]
 
 [ext_resource type="Script" path="res://addons/jam_launch/ui/ClientUI.gd" id="1_53hke"]
+[ext_resource type="StyleBox" uid="uid://bqyunuus587qa" path="res://assets/themes/menustylebox.tres" id="1_oyu5u"]
 [ext_resource type="LabelSettings" uid="uid://bahps2twlw7bf" path="res://assets/themes/demontitle1.tres" id="2_lfcbi"]
+[ext_resource type="Texture2D" uid="uid://dv8lfcvv6qw8o" path="res://assets/uda-5000.png" id="2_rbqf5"]
 [ext_resource type="PackedScene" uid="uid://bdfnxrmorcwij" path="res://addons/jam_launch/ui/LoadingSplash.tscn" id="3_8qfds"]
+
+[sub_resource type="Theme" id="Theme_bjmcf"]
+Button/styles/normal = ExtResource("1_oyu5u")
+LineEdit/styles/focus = null
+LineEdit/styles/normal = ExtResource("1_oyu5u")
 
 [node name="ClientUI" type="Control"]
 layout_mode = 3
@@ -11,7 +18,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_bjmcf")
 script = ExtResource("1_53hke")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rbqf5")
+expand_mode = 1
 
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
@@ -20,9 +38,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.180392, 0.180392, 0.180392, 1)
+color = Color(0, 0, 0, 0.298039)
 
 [node name="VB" type="VBoxContainer" parent="BG"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
