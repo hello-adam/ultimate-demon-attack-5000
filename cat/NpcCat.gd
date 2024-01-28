@@ -12,6 +12,7 @@ var receiving_pets := false
 @onready var hearts: CPUParticles3D = $Hearts
 
 func _ready():
+	$HUD.visible = false
 	hearts.emitting = false
 	buffered_sync = get_node("../../../BufferedSync")
 	state_key = get_path()

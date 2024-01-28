@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfou06eauq0s2"]
+
+[ext_resource type="Script" path="res://furniture/PaintCan.gd" id="1_2duqa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjry5"]
+albedo_color = Color(0.462745, 0.462745, 0.462745, 1)
+metallic = 0.69
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3m22m"]
+material = SubResource("StandardMaterial3D_jjry5")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rqdej"]
+radius = 0.25
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jiggb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[node name="PaintCan" type="Node3D" groups=["paint"]]
+script = ExtResource("1_2duqa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.891798, -0.452435, 0, 0.452435, 0.891798, 0, 0.289571, 0)
+mesh = SubResource("CylinderMesh_3m22m")
+
+[node name="Area3D" type="Area3D" parent="." groups=["paint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2244, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_rqdej")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525741, 0)
+light_color = Color(0, 0.627451, 0, 1)
+omni_range = 0.337
+omni_attenuation = 1.41421
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jiggb")

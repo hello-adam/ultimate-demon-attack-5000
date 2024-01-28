@@ -17,6 +17,14 @@ var message:
 var typing = false
 var target_wall = null
 
+@onready var paint_bar = $HUD/M/VB/Paint
+var paint := 10.0:
+	set(val):
+		paint = val
+		if paint_bar:
+			paint_bar.value = val
+		
+
 var camera_base_transform: Transform3D
 
 var illuminated_wall = null:
@@ -26,6 +34,10 @@ var illuminated_wall = null:
 		if val != null:
 			val.set_illuminate(true)
 		illuminated_wall = val
+
+@rpc("call_local", "reliable")
+func sync_paint(p: float):
+	paint = p
 
 @rpc("reliable")
 func show_msg(msg: String):
@@ -37,7 +49,14 @@ func _ready():
 	super._ready()
 	camera_base_transform = camera.transform
 	if multiplayer.get_unique_id() == pid:
+		$HUD.visible = true
 		popup_msg.show_message.call_deferred("You are a Cat.\n\nThe Hoomin must know the truth.\n\nTell him with graffiti.")
+	else:
+		$HUD.visible = false
+
+@rpc("reliable")
+func set_hud_visibility(v: bool):
+	$HUD.visible = v
 
 @rpc("any_peer")
 func send_string(msg: String):
@@ -52,8 +71,9 @@ func send_string(msg: String):
 		elif len(msg) > 1:
 			return
 		target_wall.label_text += msg
+		sync_paint.rpc(paint - 1.0)
 		
-		if len(target_wall.label_text) >= 40:
+		if len(target_wall.label_text) >= 40 or paint < 1.0:
 			end_typing()
 
 func end_typing():
@@ -92,6 +112,12 @@ func _physics_process(delta):
 	super._physics_process(delta)
 
 func _on_interaction_area_area_entered(area):
+	if multiplayer.is_server() and self.pid != -1:
+		if area.get_parent().is_in_group("paint"):
+			print("getting paint")
+			sync_paint.rpc(paint + 10.0)
+			area.get_parent().collect.rpc()
+	
 	if multiplayer.get_unique_id() != self.pid:
 		return
 	if area.get_parent().is_in_group("write_surface"):

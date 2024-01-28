@@ -3,6 +3,8 @@ extends Node3D
 var human_scn = preload("res://human/Human.tscn")
 var cat_scn = preload("res://cat/Cat.tscn")
 
+var paint_scn = preload("res://furniture/PaintCan.tscn")
+
 var human_spawned = false
 
 func spawn_player(pid: int, nametag: String):
@@ -11,8 +13,10 @@ func spawn_player(pid: int, nametag: String):
 
 	if human_spawned:
 		p = cat_scn.instantiate()
-		p.position = $SpawnPoints.get_children().pick_random().position
-		p.rotation = $SpawnPoints.get_children().pick_random().rotation
+		p.transform = $SpawnPoints.get_children().pick_random().transform
+		
+		if $SpawnTimer.is_stopped():
+			$SpawnTimer.start()
 	else:
 		p = human_scn.instantiate()
 		human_spawned = true
@@ -32,3 +36,9 @@ func remove_player(pid):
 
 func get_players():
 	return $Players.get_children()
+
+
+func _on_spawn_timer_timeout():
+	var paint = paint_scn.instantiate()
+	paint.position = Vector3(randf_range(-100, 100), 0.0, randf_range(-100, 100))
+	$Paint.add_child(paint, true)

@@ -64,6 +64,10 @@ func _process(delta):
 						
 				#dummy_interaction()
 
+@rpc("reliable")
+func set_hud_visibility(v: bool):
+	$HUD.visible = v
+
 @rpc()
 func sync_lucidity(val: float):
 	lucid_bar.value = val
@@ -76,6 +80,9 @@ func body_swap(other):
 	var old_hoomin = pid
 	var new_hoomin = other.pid
 	
+	set_hud_visibility.rpc_id(old_hoomin, false)
+	other.set_hud_visibility.rpc_id(new_hoomin, false)
+	
 	# todo: swap animation
 	await get_tree().create_timer(0.5)
 	
@@ -84,7 +91,9 @@ func body_swap(other):
 	await get_tree().create_timer(0.25)
 	
 	show_msg.rpc_id(new_hoomin, "You are a Human.\n\nYou must find your cat.\nPet cats to stay lucid.\n\nDon't pet weird cats.")
+	set_hud_visibility.rpc_id(new_hoomin, true)
 	other.show_msg.rpc_id(old_hoomin, "You tried to pet a weird cat.\n\nNow you are a weird cat.")
+	other.set_hud_visibility.rpc_id(old_hoomin, true)
 	
 	set_interacting.rpc(false)
 	other.set_interacting.rpc(false)

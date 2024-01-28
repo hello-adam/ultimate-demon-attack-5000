@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbyjjq47i081w"]
+[gd_scene load_steps=10 format=3 uid="uid://cbyjjq47i081w"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
 [ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
 [ext_resource type="PackedScene" path="res://cat/TrueCat.tscn" id="3_5ej56"]
 [ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="3_5u55u"]
 [ext_resource type="PackedScene" uid="uid://bpcoq3fg4xlly" path="res://furniture/Cube.tscn" id="3_d3g6n"]
+[ext_resource type="PackedScene" uid="uid://cfou06eauq0s2" path="res://furniture/PaintCan.tscn" id="6_gs33b"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
 
@@ -41,16 +42,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6723, 1.46961, 0)
 [node name="1" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
 
+[node name="6" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
+
 [node name="2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
+
+[node name="7" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
 
 [node name="3" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 10, 0)
 
+[node name="8" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 10, 0)
+
 [node name="4" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
 
+[node name="9" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
+
 [node name="5" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+
+[node name="10" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
 
 [node name="HumanSpawnPoint" type="Node3D" parent="SpawnPoints"]
@@ -129,3 +145,23 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0
 
 [node name="WriteableSurface2" parent="Stuff/Cube4" instance=ExtResource("3_5u55u")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+
+[node name="Paint" type="Node3D" parent="."]
+
+[node name="PaintCan" parent="Paint" instance=ExtResource("6_gs33b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6281)
+
+[node name="PaintCan2" parent="Paint" instance=ExtResource("6_gs33b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1323, 0, 10.3611)
+
+[node name="PaintCan3" parent="Paint" instance=ExtResource("6_gs33b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6046, 0, 4.01294)
+
+[node name="PaintSpawnSync" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://furniture/PaintCan.tscn")
+spawn_path = NodePath("../Paint")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
