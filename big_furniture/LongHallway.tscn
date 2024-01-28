@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh0thf283djlo"]
+
+[ext_resource type="PackedScene" uid="uid://cw1cma2qtywxu" path="res://Hallway.tscn" id="1_7ymvn"]
+
+[node name="LongHallway" type="Node3D"]
+
+[node name="Hallway" parent="." instance=ExtResource("1_7ymvn")]
+
+[node name="Hallway5" parent="." instance=ExtResource("1_7ymvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.78715)
+
+[node name="Hallway2" parent="." instance=ExtResource("1_7ymvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.92482)
+
+[node name="Hallway3" parent="." instance=ExtResource("1_7ymvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.8335)
+
+[node name="Hallway4" parent="." instance=ExtResource("1_7ymvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.0595)
