@@ -36,7 +36,7 @@ func _process(delta):
 		if randi() % 3 == 0:
 			speed = 0.0
 		else:
-			speed = base_speed * randf_range(0.3, 1.3)
+			speed = base_speed * randf_range(0.3, 1.3) * -1
 			
 		if randi() % 2 == 0:
 			rotate_delta = 0.0
