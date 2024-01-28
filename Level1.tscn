@@ -110,7 +110,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 0.57882, 1.6108
 label_text = "Don't pet strange cats"
 
 [node name="Hallway" parent="Stuff" instance=ExtResource("7_yjfie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.561, -0.176332, 8.12955)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.561, -0.176332, 7.54883)
 
 [node name="Hallway2" parent="Stuff" instance=ExtResource("7_yjfie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.561, -0.176332, -2.4095)
