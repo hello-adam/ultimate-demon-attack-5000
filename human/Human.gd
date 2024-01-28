@@ -89,7 +89,10 @@ func pet_the_cat(target):
 	print("petting the cat")
 	set_interacting.rpc(true)
 	target.receive_pets(2.0)
-	do_pet_the_cat.rpc_id(pid)
+	if target.true_cat:
+		do_win_the_game.rpc_id(pid)
+	else:
+		do_pet_the_cat.rpc_id(pid)
 	await get_tree().create_timer(1.7).timeout
 	set_interacting.rpc(false)
 	print("done petting the cat")
@@ -104,7 +107,19 @@ func do_pet_the_cat():
 	tween.tween_property(camera, "position", base_camera_pos, 0.5).set_trans(Tween.TRANS_CIRC)
 	tween.play()
 	await tween.finished
-	popup_msg.show_message("You pet the cat.")
+	popup_msg.show_message("You pet the cat. \n\n Where did this cat come from? \n\n This isn't your cat. \n Find your cat.")
+
+@rpc
+func do_win_the_game():
+	if multiplayer.get_unique_id() != pid:
+		return
+	var base_camera_pos = camera.position
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera, "position", base_camera_pos + Vector3(0, -0.41, 0), 1.2).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(camera, "position", base_camera_pos, 0.5).set_trans(Tween.TRANS_CIRC)
+	tween.play()
+	await tween.finished
+	popup_msg.show_message("Yes. \n\n This is your cat. You've found your cat. \n\n But realization hits you. \n\n You were the cat the whole time.")
 
 func dummy_interaction():
 	if not multiplayer.is_server():
