@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg2obkxrboxdn"]
+[gd_scene load_steps=4 format=3 uid="uid://dg2obkxrboxdn"]
 
 [ext_resource type="Script" path="res://furniture/WriteableSurface.gd" id="1_c5v5b"]
+[ext_resource type="FontFile" uid="uid://bkmoph87u4tam" path="res://assets/fonts/RockSalt-Regular.ttf" id="2_vwgru"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rerdw"]
 size = Vector3(2, 3, 0.1)
@@ -18,15 +19,20 @@ shape = SubResource("BoxShape3D_rerdw")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.384523, 0)
+modulate = Color(0.290196, 0.54902, 0.992157, 1)
+outline_modulate = Color(0, 0, 0.709804, 1)
 text = "This is the label text"
+font = ExtResource("2_vwgru")
+outline_size = 5
+uppercase = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.995542, 0.0943168, 0, -0.0943168, 0.995542, 0, 0, 2.59363)
 fov = 90.0
 
 [node name="Light" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.986937, -0.161104, 0, 0.161104, 0.986937, 0, -1.94682, 0.81771)
-light_color = Color(1, 1, 0.615686, 1)
+transform = Transform3D(1, 0, 0, 0, 0.986937, -0.161104, 0, 0.161104, 0.986937, 0, -0.783159, 0.81771)
+light_color = Color(0.576471, 0.972549, 0.72549, 1)
 light_energy = 2.0
 light_volumetric_fog_energy = 2.0
 spot_range = 2.0
