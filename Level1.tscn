@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbyjjq47i081w"]
+[gd_scene load_steps=9 format=3 uid="uid://cbyjjq47i081w"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_bfqtw"]
 [ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_gsx1l"]
-[ext_resource type="PackedScene" path="res://cat/TrueCat.tscn" id="3_5ej56"]
-[ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="3_5u55u"]
-[ext_resource type="PackedScene" uid="uid://bpcoq3fg4xlly" path="res://furniture/Cube.tscn" id="3_d3g6n"]
+[ext_resource type="PackedScene" uid="uid://cxx67y04nr5uu" path="res://cat/TrueCat.tscn" id="3_5ej56"]
+[ext_resource type="PackedScene" uid="uid://cuap4eaa1w70p" path="res://hallway_part.tscn" id="4_j1rfc"]
 [ext_resource type="PackedScene" uid="uid://cfou06eauq0s2" path="res://furniture/PaintCan.tscn" id="6_gs33b"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
@@ -14,7 +13,7 @@ albedo_color = Color(0.270588, 0.270588, 0.270588, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_udcmi"]
 material = SubResource("StandardMaterial3D_7fjen")
-size = Vector2(100, 100)
+size = Vector2(200, 200)
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_bfqtw")
@@ -26,7 +25,7 @@ spawn_path = NodePath("../Players")
 [node name="Players" type="Node3D" parent="."]
 
 [node name="NpcCat" parent="Players" instance=ExtResource("2_gsx1l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1784, 24.3646)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.65392, 4.1784, 35.8768)
 
 [node name="NpcCat2" parent="Players" instance=ExtResource("2_gsx1l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4111, 4.1784, -31.8762)
@@ -34,13 +33,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4111, 4.1784, -31.8762)
 [node name="NpcCat3" parent="Players" instance=ExtResource("2_gsx1l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5074, 4.1784, -1.05054)
 
-[node name="NpcCat4" parent="Players" instance=ExtResource("3_5ej56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6723, 1.46961, 0)
+[node name="TrueCat" parent="Players" instance=ExtResource("3_5ej56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6723, 1.46961, -36.9722)
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8372, 2.35711, 6.16181)
 
 [node name="6" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
@@ -67,10 +66,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
 
 [node name="10" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 
 [node name="HumanSpawnPoint" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -48.2421, 4.18217, -48.5648)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0.0422988, 2.41571, -4.80632)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -81,70 +80,30 @@ shape = SubResource("WorldBoundaryShape3D_ym3l2")
 mesh = SubResource("PlaneMesh_udcmi")
 
 [node name="Stuff" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329803, 0)
 
-[node name="Cube" parent="Stuff" instance=ExtResource("3_d3g6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47761, -1.55054)
+[node name="HallwayPart" parent="Stuff" instance=ExtResource("4_j1rfc")]
 
-[node name="WriteableSurface3" parent="Stuff/Cube" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+[node name="HallwayPart2" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6671)
 
-[node name="WriteableSurface" parent="Stuff/Cube" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+[node name="HallwayPart3" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.29469)
 
-[node name="WriteableSurface4" parent="Stuff/Cube" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+[node name="HallwayPart4" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.21069)
 
-[node name="WriteableSurface2" parent="Stuff/Cube" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+[node name="HallwayPart5" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.9947)
 
-[node name="Cube2" parent="Stuff" instance=ExtResource("3_d3g6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.51486, 1.47761, -1.55054)
+[node name="HallwayPart6" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.8839)
 
-[node name="WriteableSurface3" parent="Stuff/Cube2" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
-label_text = "Pet cats to stay lucid"
+[node name="HallwayPart7" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.8092)
 
-[node name="WriteableSurface" parent="Stuff/Cube2" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
-label_text = "don't pet strange cats"
-
-[node name="WriteableSurface4" parent="Stuff/Cube2" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
-label_text = "don't pet strange cats"
-
-[node name="WriteableSurface2" parent="Stuff/Cube2" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
-label_text = "pet cats to stay asleep"
-
-[node name="Cube3" parent="Stuff" instance=ExtResource("3_d3g6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34503, 1.47761, -1.55054)
-
-[node name="WriteableSurface3" parent="Stuff/Cube3" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
-
-[node name="WriteableSurface" parent="Stuff/Cube3" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
-
-[node name="WriteableSurface4" parent="Stuff/Cube3" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
-
-[node name="WriteableSurface2" parent="Stuff/Cube3" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
-
-[node name="Cube4" parent="Stuff" instance=ExtResource("3_d3g6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16602, 1.47761, 6.97464)
-
-[node name="WriteableSurface3" parent="Stuff/Cube4" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
-
-[node name="WriteableSurface" parent="Stuff/Cube4" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
-
-[node name="WriteableSurface4" parent="Stuff/Cube4" instance=ExtResource("3_5u55u")]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
-
-[node name="WriteableSurface2" parent="Stuff/Cube4" instance=ExtResource("3_5u55u")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+[node name="HallwayPart8" parent="Stuff" instance=ExtResource("4_j1rfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.93192)
 
 [node name="Paint" type="Node3D" parent="."]
 

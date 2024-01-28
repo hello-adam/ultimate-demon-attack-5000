@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuap4eaa1w70p"]
+
+[ext_resource type="PackedScene" uid="uid://b5rjwn2cnnmr1" path="res://assets/models/SM_Wall.fbx" id="1_y5fn2"]
+[ext_resource type="PackedScene" uid="uid://dy1hhu4rlfjsv" path="res://assets/models/SM_WallTrim400.fbx" id="2_vy7d1"]
+[ext_resource type="PackedScene" uid="uid://cqgkunknwwoti" path="res://assets/models/SM_Floor.fbx" id="3_2arc8"]
+[ext_resource type="PackedScene" uid="uid://cmo0cf6u57idb" path="res://assets/models/SM_Ceiling.fbx" id="4_qe7om"]
+[ext_resource type="PackedScene" uid="uid://dw7f0n1ax4qma" path="res://assets/models/SM_CeilingLight.fbx" id="5_6j2ld"]
+
+[node name="HallwayPart" type="Node3D"]
+
+[node name="Wall" parent="." instance=ExtResource("1_y5fn2")]
+
+[node name="Trim" parent="Wall" instance=ExtResource("2_vy7d1")]
+
+[node name="Wall2" parent="." instance=ExtResource("1_y5fn2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Trim" parent="Wall2" instance=ExtResource("2_vy7d1")]
+
+[node name="Floor" parent="." instance=ExtResource("3_2arc8")]
+
+[node name="OtherWall" parent="." instance=ExtResource("4_qe7om")]
+
+[node name="Root Scene3" parent="OtherWall" instance=ExtResource("5_6j2ld")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OtherWall/Root Scene3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36687, 0)
+light_energy = 0.25

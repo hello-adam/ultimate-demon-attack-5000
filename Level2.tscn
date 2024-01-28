@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbcntyw78obhg"]
+
+[ext_resource type="Script" path="res://Level1.gd" id="1_kj60f"]
+[ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="2_jkjqd"]
+[ext_resource type="PackedScene" uid="uid://cxx67y04nr5uu" path="res://cat/TrueCat.tscn" id="3_r4qw8"]
+[ext_resource type="PackedScene" uid="uid://bpcoq3fg4xlly" path="res://furniture/Cube.tscn" id="4_d2atn"]
+[ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="5_id3dm"]
+[ext_resource type="PackedScene" uid="uid://cfou06eauq0s2" path="res://furniture/PaintCan.tscn" id="6_t6vi0"]
+[ext_resource type="PackedScene" uid="uid://45b1j0clqgys" path="res://furniture/wall_piece.tscn" id="7_cxd1w"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ym3l2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjen"]
+albedo_color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_udcmi"]
+material = SubResource("StandardMaterial3D_7fjen")
+size = Vector2(100, 100)
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_kj60f")
+
+[node name="PlayerSpawnSync" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://human/Human.tscn", "res://cat/Cat.tscn", "res://cat/NpcCat.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="NpcCat" parent="Players" instance=ExtResource("2_jkjqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1784, 24.3646)
+
+[node name="NpcCat2" parent="Players" instance=ExtResource("2_jkjqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4111, 4.1784, -31.8762)
+
+[node name="NpcCat3" parent="Players" instance=ExtResource("2_jkjqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5074, 4.1784, -1.05054)
+
+[node name="NpcCat4" parent="Players" instance=ExtResource("3_r4qw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6723, 1.46961, 0)
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
+
+[node name="6" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
+
+[node name="2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
+
+[node name="7" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
+
+[node name="3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 10, 0)
+
+[node name="8" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 10, 0)
+
+[node name="4" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
+
+[node name="9" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
+
+[node name="5" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+
+[node name="10" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+
+[node name="HumanSpawnPoint" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -48.2421, 4.18217, -48.5648)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_ym3l2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_udcmi")
+
+[node name="Stuff" type="Node3D" parent="."]
+
+[node name="Cube" parent="Stuff" instance=ExtResource("4_d2atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47761, -1.55054)
+
+[node name="WriteableSurface3" parent="Stuff/Cube" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+
+[node name="WriteableSurface2" parent="Stuff/Cube" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+
+[node name="WriteableSurface4" parent="Stuff/Cube" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+
+[node name="WriteableSurface5" parent="Stuff/Cube" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+
+[node name="Cube2" parent="Stuff" instance=ExtResource("4_d2atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.51486, 1.47761, -1.55054)
+
+[node name="WriteableSurface3" parent="Stuff/Cube2" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+label_text = "Pet cats to stay lucid"
+
+[node name="WriteableSurface2" parent="Stuff/Cube2" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+label_text = "don't pet strange cats"
+
+[node name="WriteableSurface4" parent="Stuff/Cube2" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+label_text = "don't pet strange cats"
+
+[node name="WriteableSurface5" parent="Stuff/Cube2" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+label_text = "pet cats to stay asleep"
+
+[node name="Cube3" parent="Stuff" instance=ExtResource("4_d2atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34503, 1.47761, -1.55054)
+
+[node name="WriteableSurface3" parent="Stuff/Cube3" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+
+[node name="WriteableSurface2" parent="Stuff/Cube3" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+
+[node name="WriteableSurface4" parent="Stuff/Cube3" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+
+[node name="WriteableSurface5" parent="Stuff/Cube3" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+
+[node name="Cube4" parent="Stuff" instance=ExtResource("4_d2atn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16602, 1.47761, 6.97464)
+
+[node name="WriteableSurface3" parent="Stuff/Cube4" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+
+[node name="WriteableSurface2" parent="Stuff/Cube4" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+
+[node name="WriteableSurface4" parent="Stuff/Cube4" instance=ExtResource("5_id3dm")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+
+[node name="WriteableSurface5" parent="Stuff/Cube4" instance=ExtResource("5_id3dm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)
+
+[node name="Paint" type="Node3D" parent="."]
+
+[node name="PaintCan" parent="Paint" instance=ExtResource("6_t6vi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6281)
+
+[node name="PaintCan2" parent="Paint" instance=ExtResource("6_t6vi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1323, 0, 10.3611)
+
+[node name="PaintCan3" parent="Paint" instance=ExtResource("6_t6vi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6046, 0, 4.01294)
+
+[node name="PaintSpawnSync" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://furniture/PaintCan.tscn")
+spawn_path = NodePath("../Paint")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="WallPiece" parent="." instance=ExtResource("7_cxd1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0533, 1.27791, 0)
+
+[node name="WallPiece2" parent="." instance=ExtResource("7_cxd1w")]
+transform = Transform3D(-0.997335, 0, -0.0729598, 0, 1, 0, 0.0729598, 0, -0.997335, 21.0533, 1.27791, 4.20279)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

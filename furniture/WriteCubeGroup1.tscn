@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://do0kwe6ec0ct5"]
+
+[ext_resource type="PackedScene" uid="uid://dp8rjnewi1acf" path="res://furniture/write_cube.tscn" id="1_sfqhs"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WriteCube" parent="." instance=ExtResource("1_sfqhs")]
+
+[node name="WriteCube6" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="WriteCube7" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+
+[node name="WriteCube8" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="WriteCube9" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0)
+
+[node name="WriteCube2" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="WriteCube3" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="WriteCube4" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+
+[node name="WriteCube5" parent="." instance=ExtResource("1_sfqhs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)

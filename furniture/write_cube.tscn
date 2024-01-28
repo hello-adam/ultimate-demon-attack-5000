@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp8rjnewi1acf"]
+
+[ext_resource type="PackedScene" uid="uid://bpcoq3fg4xlly" path="res://furniture/Cube.tscn" id="1_vdg7a"]
+[ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="2_3gok4"]
+
+[node name="WriteCube" type="Node3D"]
+
+[node name="Cube2" parent="." instance=ExtResource("1_vdg7a")]
+
+[node name="WriteableSurface3" parent="Cube2" instance=ExtResource("2_3gok4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.02, 0.52239, -1.52946)
+
+[node name="WriteableSurface2" parent="Cube2" instance=ExtResource("2_3gok4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52239, 1.55054)
+
+[node name="WriteableSurface4" parent="Cube2" instance=ExtResource("2_3gok4")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -1.51, 0.52239, 0.13354)
+
+[node name="WriteableSurface5" parent="Cube2" instance=ExtResource("2_3gok4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.6, 0.52239, 0.0475399)

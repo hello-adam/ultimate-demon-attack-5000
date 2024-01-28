@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://chk6g3kcn4vdv"]
+
+[ext_resource type="PackedScene" uid="uid://do0kwe6ec0ct5" path="res://furniture/WriteCubeGroup1.tscn" id="1_550bp"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.930315, 0)
+
+[node name="Node3D4" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Node3D5" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="Node3D2" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.930315, 7.7001)
+
+[node name="Node3D3" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 7.7)
+
+[node name="Node3D6" parent="." instance=ExtResource("1_550bp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7.7)

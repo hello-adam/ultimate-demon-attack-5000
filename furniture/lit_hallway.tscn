@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://ek3m0s3scibs"]
+
+[ext_resource type="PackedScene" uid="uid://cuap4eaa1w70p" path="res://hallway_part.tscn" id="1_mw3il"]
+
+[node name="Hallway" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329803, 0)
+
+[node name="HallwayPart" parent="." instance=ExtResource("1_mw3il")]
+
+[node name="HallwayPart2" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6671)
+
+[node name="HallwayPart3" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.29469)
+
+[node name="HallwayPart4" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.21069)
+
+[node name="HallwayPart5" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.9947)
+
+[node name="HallwayPart6" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.8839)
+
+[node name="HallwayPart7" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.8092)
+
+[node name="HallwayPart8" parent="." instance=ExtResource("1_mw3il")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.93192)

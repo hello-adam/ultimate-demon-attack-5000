@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cw1cma2qtywxu"]
+
+[ext_resource type="ArrayMesh" uid="uid://coel5cgcspgpa" path="res://assets/models/Floor.res" id="1_o3tk6"]
+[ext_resource type="ArrayMesh" uid="uid://kggcwip06kck" path="res://assets/models/SMWall.res" id="2_xjebt"]
+[ext_resource type="ArrayMesh" uid="uid://df14p4aket15y" path="res://assets/models/Trim.res" id="3_y2fp7"]
+[ext_resource type="ArrayMesh" uid="uid://rela7p4rk671" path="res://assets/models/SMCeiling.res" id="4_setcu"]
+[ext_resource type="ArrayMesh" uid="uid://dgct43hxiy8qp" path="res://assets/models/CeilingLight.res" id="5_e0s5r"]
+
+[node name="Hallway" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_o3tk6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_xjebt")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D2"]
+mesh = ExtResource("3_y2fp7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_xjebt")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D3"]
+mesh = ExtResource("3_y2fp7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_setcu")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+mesh = ExtResource("5_e0s5r")
