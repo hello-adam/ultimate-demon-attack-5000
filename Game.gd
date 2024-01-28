@@ -5,6 +5,8 @@ extends Node3D
 @onready var jc: JamConnect = $JamConnect
 
 func _ready():
+	if not OS.has_feature("server"):
+		$Music/Menu.play()
 	console.jam_connect = jc
 	hud_menu.get_popup().id_pressed.connect(_on_menu_selection)
 
@@ -26,4 +28,17 @@ func _on_jam_connect_player_disconnected(pid: int, pinfo):
 func _on_jam_connect_player_verified(pid: int, pinfo):
 	var player_name = pinfo.get("name", "<>")
 	$Level1.spawn_player(pid, player_name)
+	start_game_music.rpc()
 
+@rpc("reliable")
+func start_game_music():
+	$Music/Menu.stop()
+	$Music/Transition.play()
+
+func _on_jam_connect_server_pre_ready():
+	if not OS.has_feature("server"):
+		$Music/Menu.stop()
+
+
+func _on_transition_finished():
+	$Music/Level.play()

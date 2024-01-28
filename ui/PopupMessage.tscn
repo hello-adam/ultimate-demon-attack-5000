@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdtxtcdtoqb8d"]
 
 [ext_resource type="Script" path="res://ui/PopupMessage.gd" id="1_pfldu"]
-[ext_resource type="Theme" uid="uid://dwhcwt6qxmdqg" path="res://assets/themes/popupfont.tres" id="2_i8i3g"]
+[ext_resource type="Theme" uid="uid://ckgc5plwq3ais" path="res://assets/themes/popupfont.tres" id="2_i8i3g"]
 
 [node name="PopupMessage" type="Popup"]
 size = Vector2i(500, 500)
