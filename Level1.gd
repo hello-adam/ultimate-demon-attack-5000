@@ -11,11 +11,12 @@ func spawn_player(pid: int, nametag: String):
 
 	if human_spawned:
 		p = cat_scn.instantiate()
-		p.position = $SpawnPoints/HumanSpawnPoint.position
+		p.position = $SpawnPoints.get_children().pick_random().position
+		p.rotation = $SpawnPoints.get_children().pick_random().rotation
 	else:
 		p = human_scn.instantiate()
 		human_spawned = true
-		p.position = $SpawnPoints.get_children().pick_random().position
+		p.transform = $SpawnPoints/HumanSpawnPoint.transform
 	
 	p.pid = pid
 	p.nametag = nametag

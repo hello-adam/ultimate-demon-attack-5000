@@ -30,6 +30,7 @@ var state_key: String
 @onready var camera: Camera3D = $Camera3D
 
 func _ready():
+	y_rotation = rotation.y
 	buffered_sync = get_node("../../../BufferedSync")
 	state_key = "%d" % pid
 	if multiplayer.get_unique_id() == pid:
