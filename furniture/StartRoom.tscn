@@ -54,22 +54,22 @@ transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -7.10321
 transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.07452, 0, -3.82038)
 
 [node name="WriteCube4" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.07452, 3.34414, -3.82038)
+transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -7.07452, 2.77959, -3.82038)
 
 [node name="WriteCube5" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -2.79397e-09, 0, 1, 0, 2.79397e-09, 0, 1, -7.10484, 3.34414, -6.82023)
+transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.10484, 2.83412, -6.82023)
 
 [node name="WriteCube6" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -2.79397e-09, 0, 1, 0, 2.79397e-09, 0, 1, -7.13441, 3.34414, -9.74634)
+transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.13441, 2.98933, -9.74634)
 
 [node name="WriteCube7" parent="Node3D" instance=ExtResource("3_tk26h")]
 transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.13441, 5.72188, -9.74634)
 
 [node name="WriteCube8" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -4.65661e-09, 0, 1, 0, 4.65661e-09, 0, 1, -7.10502, 5.72188, -6.838)
+transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.10502, 5.62147, -6.838)
 
 [node name="WriteCube9" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -5.58794e-09, 0, 1, 0, 5.58794e-09, 0, 1, -7.07873, 5.72188, -4.23553)
+transform = Transform3D(1, 0, -4.65661e-09, 0, 1, 0, 4.65661e-09, 0, 1, -7.07873, 5.27038, -4.23553)
 
 [node name="WriteCube10" parent="Node3D" instance=ExtResource("3_tk26h")]
 transform = Transform3D(1, 0, -8.3819e-09, 0, 1, 0, 8.3819e-09, 0, 1, 16.3677, -1.02206, 7.26094)
