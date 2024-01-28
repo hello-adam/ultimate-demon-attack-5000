@@ -30,6 +30,8 @@ var state_key: String
 @onready var camera: Camera3D = $Camera3D
 
 func _ready():
+	if OS.has_feature("web"):
+		mouse_sensitivity *= 3
 	y_rotation = rotation.y
 	buffered_sync = get_node("../../../BufferedSync")
 	state_key = "%d" % pid
