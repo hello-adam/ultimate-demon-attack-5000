@@ -17,11 +17,24 @@ var cat_scn = preload("res://cat/Cat.tscn")
 
 var has_won = false
 
+func stop_music():
+	for child in get_node("../../../Music").get_children():
+		child.stop()
+
+func play_theme_music():
+	stop_music()
+	get_node("../../../Music/HumanTheme").play()
+	
+@rpc()
+func start_theme_sync():
+	play_theme_music()
+
 func _ready():
 	super._ready()
 	lucid_bar.value = 70.0
 	popup_msg.popup_hide.connect(on_popup_dismiss)
 	if multiplayer.get_unique_id() == pid:
+		play_theme_music()
 		$HUD.visible = true
 		popup_msg.show_message("You wake up in the middle of the night.\n\n Or are you awake? \n Your cat will know the answer \n You need to find your cat.\n")
 	else:
@@ -98,8 +111,10 @@ func body_swap(other):
 	
 	show_msg.rpc_id(new_hoomin, "You are a Human.\n\nYou must find your cat.\nPet cats to stay lucid.\n\nDon't pet weird cats.")
 	set_hud_visibility.rpc_id(new_hoomin, true)
+	start_theme_sync.rpc_id(new_hoomin)
 	other.show_msg.rpc_id(old_hoomin, "You tried to pet a weird cat.\n\nNow you are a weird cat.")
 	other.set_hud_visibility.rpc_id(old_hoomin, true)
+	other.start_theme_sync.rpc_id(old_hoomin)
 	
 	set_interacting.rpc(false)
 	other.set_interacting.rpc(false)

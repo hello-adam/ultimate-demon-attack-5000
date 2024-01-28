@@ -45,13 +45,26 @@ func show_msg(msg: String):
 	if pid != multiplayer.get_unique_id():
 		return
 	popup_msg.show_message(msg)
+
+func stop_music():
+	for child in get_node("../../../Music").get_children():
+		child.stop()
+
+func play_theme_music():
+	stop_music()
+	get_node("../../../Music/CatTheme").play()
+	
+@rpc()
+func start_theme_sync():
+	play_theme_music()
 	
 func _ready():
 	super._ready()
 	camera_base_transform = camera.transform
 	if multiplayer.get_unique_id() == pid:
+		play_theme_music()
 		$HUD.visible = true
-		popup_msg.show_message.call_deferred("You are a Cat.\n\nThe Hoomin must know the truth.\n\nTell him with graffiti.")
+		popup_msg.show_message.call_deferred("You are a Cat.\n\nHoomins aren't smart.\n\nCollect paint. Vandalize walls.")
 	else:
 		$HUD.visible = false
 
