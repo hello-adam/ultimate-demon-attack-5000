@@ -1,10 +1,11 @@
 extends Node3D
 
-var label_text:
+@export var label_text: String:
 	set(val):
 		$Label3D.text = val
-		if multiplayer.is_server():
-			sync_label_text.rpc(val)
+		if multiplayer != null:
+			if multiplayer.is_server():
+				sync_label_text.rpc(val)
 		
 	get:
 		return $Label3D.text
@@ -15,7 +16,6 @@ var label_text:
 
 func _ready():
 	light.visible = false
-	label_text = "Test Text"
 	var max_angle_degrees = 30
 	var random_radians = randf() * deg_to_rad(max_angle_degrees)
 	if randi() % 2 == 0:

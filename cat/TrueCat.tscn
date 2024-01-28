@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxx67y04nr5uu"]
+
+[ext_resource type="PackedScene" uid="uid://nwwdei84pokc" path="res://cat/NpcCat.tscn" id="1_7t3lu"]
+
+[node name="NpcCat" instance=ExtResource("1_7t3lu")]
+true_cat = true
+
+[node name="DebugTrueCat" type="OmniLight3D" parent="." index="6"]
+light_color = Color(0.164706, 1, 1, 1)
+omni_range = 4096.0

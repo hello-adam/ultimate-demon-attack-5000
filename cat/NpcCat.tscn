@@ -13,6 +13,7 @@ height = 0.2
 
 [node name="NpcCat" instance=ExtResource("1_kkm20")]
 script = ExtResource("2_roabr")
+true_cat = false
 
 [node name="InteractionArea" parent="." index="4" groups=["npc"]]
 

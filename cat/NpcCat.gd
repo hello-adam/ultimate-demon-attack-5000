@@ -6,6 +6,9 @@ var rotate_delta := 0.0
 
 var base_speed := 4
 var receiving_pets := false
+
+@export var true_cat := false
+
 @onready var hearts: CPUParticles3D = $Hearts
 
 func _ready():

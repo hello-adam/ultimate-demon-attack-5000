@@ -13,7 +13,7 @@ var popup_msg: PopupMessage:
 func _ready():
 	super._ready()
 	if multiplayer.get_unique_id() == pid:
-		popup_msg.show_message("You are a Human.\n\nYou must find your cat.\nPet cats to stay lucid.\n\nDon't pet weird cats.")
+		popup_msg.show_message("You wake up in the middle of the night.\n\n Or are you awake? \n Your cat will know the answer \n You need to find your cat.\n")
 
 func _input(event):
 	super._input(event)
