@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck6g3p1ahf143"]
+[gd_scene load_steps=3 format=3 uid="uid://ck6g3p1ahf143"]
 
 [ext_resource type="PackedScene" uid="uid://chk6g3kcn4vdv" path="res://furniture/Hallway.tscn" id="1_a0d6s"]
 [ext_resource type="PackedScene" uid="uid://do0kwe6ec0ct5" path="res://furniture/WriteCubeGroup1.tscn" id="2_1kwly"]
-[ext_resource type="PackedScene" uid="uid://dp8rjnewi1acf" path="res://furniture/write_cube.tscn" id="3_tk26h"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -21,7 +20,7 @@ transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 20, 2.
 transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 20, 5.9456, 1.19209e-07)
 
 [node name="Node3D11" type="Node3D" parent="Node3D"]
-transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 5.06571, 0, 7.85762)
+transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 0, 0, 0)
 
 [node name="Node3D7" parent="Node3D/Node3D11" instance=ExtResource("2_1kwly")]
 transform = Transform3D(-4.37722e-08, 0, 1, 0, 1, 0, -1, 0, -4.37722e-08, 20, 0, 2.98023e-08)
@@ -43,33 +42,3 @@ transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 20, 2.
 
 [node name="Node3D9" parent="Node3D/Node3D12" instance=ExtResource("2_1kwly")]
 transform = Transform3D(-4.28408e-08, 0, 1, 0, 1, 0, -1, 0, -4.28408e-08, 20, 5.9456, 1.19209e-07)
-
-[node name="WriteCube" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -7.13127, 0, -9.43611)
-
-[node name="WriteCube2" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -7.10321, 0, -6.65981)
-
-[node name="WriteCube3" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.07452, 0, -3.82038)
-
-[node name="WriteCube4" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -9.31323e-10, 0, 1, 0, 9.31323e-10, 0, 1, -7.07452, 2.77959, -3.82038)
-
-[node name="WriteCube5" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.10484, 2.83412, -6.82023)
-
-[node name="WriteCube6" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, -7.13441, 2.98933, -9.74634)
-
-[node name="WriteCube7" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.13441, 5.72188, -9.74634)
-
-[node name="WriteCube8" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -3.72529e-09, 0, 1, 0, 3.72529e-09, 0, 1, -7.10502, 5.62147, -6.838)
-
-[node name="WriteCube9" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -4.65661e-09, 0, 1, 0, 4.65661e-09, 0, 1, -7.07873, 5.27038, -4.23553)
-
-[node name="WriteCube10" parent="Node3D" instance=ExtResource("3_tk26h")]
-transform = Transform3D(1, 0, -8.3819e-09, 0, 1, 0, 8.3819e-09, 0, 1, 16.3677, -1.02206, 7.26094)

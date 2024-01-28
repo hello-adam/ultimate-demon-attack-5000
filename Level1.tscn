@@ -93,7 +93,6 @@ mesh = SubResource("PlaneMesh_udcmi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.329803, 0)
 
 [node name="Node3D" parent="Stuff" instance=ExtResource("4_bp45c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.524179, 0)
 
 [node name="Cube" parent="Stuff" instance=ExtResource("5_7t3uy")]
 transform = Transform3D(-0.999989, 0, -0.00474729, 0, 1, 0, 0.00474729, 0, -0.999989, 6.92594, 1.5, 13.6148)
@@ -135,7 +134,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -59.8346)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.971, 0, -59.8346)
 
 [node name="Node3D3" type="Node3D" parent="Stuff"]
-transform = Transform3D(0.137393, 0, 0.990517, 0, 1, 0, -0.990517, 0, 0.137393, 12.3308, 0, 7.71581)
+transform = Transform3D(0.137393, 0, 0.990517, 0, 1, 0, -0.990517, 0, 0.137393, 12.331, 0, 0)
 
 [node name="Node3D4" parent="Stuff/Node3D3" instance=ExtResource("8_opfrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4025, 0, -59.8346)
@@ -168,7 +167,7 @@ transform = Transform3D(-0.984186, 0, 0.177136, 0, 1, 0, -0.177136, 0, -0.984186
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4025, 0, -59.8346)
 
 [node name="Node3D3" parent="Stuff/Node3D5" instance=ExtResource("8_opfrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9277, 0, -59.8346)
+transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, -24.9277, 0, -59.8346)
 
 [node name="Node3D2" parent="Stuff/Node3D5" instance=ExtResource("8_opfrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -59.8346)
@@ -177,7 +176,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -59.8346)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.971, 0, -59.8346)
 
 [node name="Node3D7" type="Node3D" parent="Stuff"]
-transform = Transform3D(-0.034917, 0, -0.99939, 0, 1, 0, 0.99939, 0, -0.034917, -7.70259, 0, -12.0444)
+transform = Transform3D(-0.034917, 0, -0.99939, 0, 1, 0, 0.99939, 0, -0.034917, -7.70259, -0.376408, -12.0444)
 
 [node name="Node3D4" parent="Stuff/Node3D7" instance=ExtResource("8_opfrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.4025, 0, -59.8346)
@@ -204,7 +203,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.9277, 0, -59.8346)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -59.8346)
 
 [node name="Node3D5" parent="Stuff/Node3D8" instance=ExtResource("8_opfrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.971, 0, -59.8346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.971, 0.866787, -59.8346)
 
 [node name="Node3D6" type="Node3D" parent="Stuff"]
 
