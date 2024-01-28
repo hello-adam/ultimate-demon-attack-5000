@@ -13,13 +13,19 @@ var popup_msg: PopupMessage:
 var lucid_sync_time := 0.0
 var lucid_sync_interval := 2.0
 
+var cat_scn = preload("res://cat/Cat.tscn")
+
+var has_won = false
+
 func _ready():
 	super._ready()
 	lucid_bar.value = 70.0
+	popup_msg.popup_hide.connect(on_popup_dismiss)
 	if multiplayer.get_unique_id() == pid:
 		$HUD.visible = true
 		popup_msg.show_message("You wake up in the middle of the night.\n\n Or are you awake? \n Your cat will know the answer \n You need to find your cat.\n")
 	else:
+		popup_msg.hide()
 		$HUD.visible = false
 
 func _input(event):
@@ -129,6 +135,7 @@ func pet_the_cat(target):
 	target.receive_pets(2.0)
 	if target.true_cat:
 		do_win_the_game.rpc_id(pid)
+		has_won = true
 	else:
 		do_pet_the_cat.rpc_id(pid)
 		lucid_bar.value += 50
@@ -159,7 +166,8 @@ func do_win_the_game():
 	tween.tween_property(camera, "position", base_camera_pos, 0.5).set_trans(Tween.TRANS_CIRC)
 	tween.play()
 	await tween.finished
-	popup_msg.show_message("Yes. \n\n This is your cat. You've found your cat. \n\n But realization hits you. \n\n You were the cat the whole time.")
+	has_won = true
+	popup_msg.show_message("Yes. \nThis is your cat. You've found your cat. \n But realization hits you. \n\n You were the cat the whole time.\n\nNow go vandalize things with the other cats.")
 
 func dummy_interaction():
 	if not multiplayer.is_server():
@@ -174,3 +182,26 @@ func dummy_interaction():
 func _physics_process(delta):
 	super._physics_process(delta)
 
+func on_popup_dismiss():
+	print("popup dismiss")
+	if has_won:
+		print("popup dismiss on win")
+		ready_to_win.rpc_id(1)
+
+@rpc("any_peer")
+func ready_to_win():
+	print("ready to win")
+	if not multiplayer.is_server():
+		return
+	if not has_won:
+		return
+	
+	print("you cat")
+	var you_cat = cat_scn.instantiate()
+	you_cat.transform = transform
+	you_cat.pid = pid
+	you_cat.nametag = nametag
+	you_cat.name = str(pid) + "THECAT"
+	get_parent().add_child(you_cat)
+	queue_free()
+	
