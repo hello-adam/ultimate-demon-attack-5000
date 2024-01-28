@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dybb1fvckc6ey"]
+[gd_scene load_steps=6 format=3 uid="uid://dybb1fvckc6ey"]
 
 [ext_resource type="Script" path="res://cat/Cat.gd" id="1_f457e"]
+[ext_resource type="PackedScene" uid="uid://wk22wih5rq72" path="res://assets/models/Cat.fbx" id="2_pbmcy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ilpyy"]
 height = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qtg0h"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_q7mew"]
-material = SubResource("StandardMaterial3D_qtg0h")
-radius = 0.25
-height = 1.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5imib"]
 properties/0/path = NodePath(".:nametag")
@@ -37,9 +31,8 @@ fov = 100.0
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ilpyy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_q7mew")
+[node name="Cat" parent="." instance=ExtResource("2_pbmcy")]
+transform = Transform3D(-1.4, 0, -1.22392e-07, 0, 1.4, 0, 1.22392e-07, 0, -1.4, 0.05, -0.396189, 0.326822)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_5imib")
