@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpcoq3fg4xlly"]
+[gd_scene load_steps=4 format=3 uid="uid://bpcoq3fg4xlly"]
 
 [ext_resource type="PackedScene" uid="uid://dg2obkxrboxdn" path="res://furniture/WriteableSurface.tscn" id="1_8v4kd"]
-[ext_resource type="PackedScene" uid="uid://dy1hhu4rlfjsv" path="res://assets/models/SM_WallTrim400.fbx" id="2_8kpwa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gklca"]
 size = Vector3(3, 3, 3)
@@ -19,6 +18,3 @@ shape = SubResource("BoxShape3D_gklca")
 mesh = SubResource("BoxMesh_4rkn7")
 
 [node name="WriteableSurface" parent="." instance=ExtResource("1_8v4kd")]
-
-[node name="Root Scene" parent="." instance=ExtResource("2_8kpwa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59, -1.80447, 0)
