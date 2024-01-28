@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dwhcwt6qxmdqg"]
+
+[ext_resource type="FontFile" uid="uid://qbwiex0ci1e5" path="res://assets/fonts/Workbench-Regular-VariableFont_BLED,SCAN.ttf" id="1_xx1ib"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qwrt"]
+bg_color = Color(0.666667, 0.529412, 0.807843, 1)
+skew = Vector2(2, 2)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8j7a0"]
+bg_color = Color(0.87451, 0.466667, 0.392157, 1)
+
+[resource]
+default_base_scale = 1.0
+default_font = ExtResource("1_xx1ib")
+Label/styles/normal = SubResource("StyleBoxFlat_1qwrt")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_8j7a0")
