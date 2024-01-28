@@ -8,15 +8,17 @@ var human_spawned = false
 func spawn_player(pid: int, nametag: String):
 	print("spawning player ", pid, " ", nametag)
 	var p = null
+
 	if human_spawned:
 		p = cat_scn.instantiate()
+		p.position = $SpawnPoints/HumanSpawnPoint.position
 	else:
 		p = human_scn.instantiate()
 		human_spawned = true
+		p.position = $SpawnPoints.get_children().pick_random().position
 	
 	p.pid = pid
 	p.nametag = nametag
-	p.position = $SpawnPoints.get_children().pick_random().position
 	p.name = str(pid)
 	$Players.add_child(p, true)
 

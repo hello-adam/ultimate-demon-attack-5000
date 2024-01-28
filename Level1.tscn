@@ -39,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6723, 1.46961, 0)
 [node name="SpawnPoints" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.09359, 2.35711, 6.16181)
 
 [node name="2" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 0)
@@ -52,6 +52,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 10, 0)
 
 [node name="5" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 10, 0)
+
+[node name="HumanSpawnPoint" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.88199, 0, 4.72776)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
