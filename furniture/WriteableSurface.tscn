@@ -21,7 +21,6 @@ shape = SubResource("BoxShape3D_rerdw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.384523, 0)
 modulate = Color(0.290196, 0.54902, 0.992157, 1)
 outline_modulate = Color(0, 0, 0.709804, 1)
-text = "This is the label text"
 font = ExtResource("2_vwgru")
 outline_size = 5
 uppercase = true
