@@ -23,7 +23,8 @@ var paint := 10.0:
 		paint = val
 		if paint_bar:
 			paint_bar.value = val
-		
+
+@onready var write_cam: Camera3D = $WriteCam
 
 var camera_base_transform: Transform3D
 
@@ -77,6 +78,14 @@ func send_string(msg: String):
 			end_typing()
 
 func end_typing():
+	pre_type_transform = transform
+	
+	if type_tween != null:
+		type_tween.stop()
+	type_tween = get_tree().create_tween()
+	type_tween.tween_property(self, "transform", pre_type_transform, 0.25)
+	type_tween.play()
+	
 	target_wall = null
 	stop_typing.rpc_id(pid)
 	set_interacting.rpc(false)
@@ -91,6 +100,10 @@ func _unhandled_input(event):
 			var input = event.as_text_keycode()
 			send_string.rpc_id(1, input)
 
+
+var pre_type_transform: Transform3D
+var type_tween
+
 func _process(delta):
 	super._process(delta)
 	
@@ -100,9 +113,18 @@ func _process(delta):
 
 			for target in $InteractionArea.get_overlapping_areas():
 				if target != null:
-					if target.get_parent().is_in_group("write_surface"):
+					if target.get_parent().is_in_group("write_surface") and paint >= 1.0:
 						target_wall = target.get_parent()
 						target_wall.label_text = ""
+						
+						pre_type_transform = transform
+						
+						if type_tween != null:
+							type_tween.stop()
+						type_tween = get_tree().create_tween()
+						type_tween.tween_property(self, "global_transform", target_wall.writer_spot.global_transform, 0.25)
+						type_tween.play()
+						
 						start_typing.rpc_id(pid, target_wall.get_path())
 						set_interacting.rpc(true)
 						return
@@ -129,6 +151,7 @@ func _on_interaction_area_area_exited(area):
 	if area.get_parent() == illuminated_wall:
 		illuminated_wall = null
 
+var cam_tween
 @rpc
 func start_typing(node_path: String):
 	if multiplayer.get_unique_id() != pid:
@@ -137,7 +160,14 @@ func start_typing(node_path: String):
 	target_wall = get_node(node_path)
 	typing = true
 	illuminated_wall = null
-	camera.global_transform = target_wall.camera.global_transform
+	
+	if cam_tween != null:
+		cam_tween.stop()
+	cam_tween = get_tree().create_tween()
+	cam_tween.tween_property(camera, "transform", write_cam.transform, 0.5).set_trans(Tween.TRANS_CUBIC)
+	cam_tween.play()
+	
+	#camera.transform = target_wall.camera.global_transform
 	#$Camera3D.global_rotation = target_wall.camera.global_rotation
 
 @rpc
@@ -146,4 +176,9 @@ func stop_typing():
 		return
 	target_wall = null
 	typing = false
-	camera.transform = camera_base_transform
+	
+	if cam_tween != null:
+		cam_tween.stop()
+	cam_tween = get_tree().create_tween()
+	cam_tween.tween_property(camera, "transform", camera_base_transform, 0.25).set_trans(Tween.TRANS_CUBIC)
+	cam_tween.play()

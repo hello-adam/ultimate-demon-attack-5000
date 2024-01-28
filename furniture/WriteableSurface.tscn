@@ -38,3 +38,6 @@ spot_range = 2.0
 spot_attenuation = 1.62451
 spot_angle = 40.89
 spot_angle_attenuation = 1.86607
+
+[node name="WriterSpot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.893904, -0.448258, 0, 0.448258, 0.893904, 0, -1.01315, 0.963933)

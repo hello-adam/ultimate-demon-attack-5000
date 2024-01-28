@@ -118,9 +118,12 @@ func _apply_sync_state():
 	if s.start_state != null and s.end_state != null:
 		var all_rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
 		position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
-		rotation = Vector3(0, all_rotation.y, 0)
-		if camera and multiplayer.get_unique_id() == pid:
-			camera.rotation = Vector3(all_rotation.x, 0, 0)
+		if interacting:
+			rotation = all_rotation
+		else:
+			rotation = Vector3(0, all_rotation.y, 0)
+			if camera and multiplayer.get_unique_id() == pid:
+				camera.rotation = Vector3(all_rotation.x, 0, 0)
 
 func _physics_process(delta):
 	if not multiplayer.is_server():
@@ -129,6 +132,11 @@ func _physics_process(delta):
 	
 	# don't do physics if interacting
 	if interacting:
+		# but keep the position and rotation in sync in case it is changed programmatically
+		buffered_sync.amend_server_state(state_key, {
+			"p": position,
+			"r": rotation,
+		})
 		return
 	
 	# Add the gravity.

@@ -12,7 +12,7 @@ extends Node3D
 
 @onready var camera: Camera3D = $Camera3D
 @onready var light: Node3D = $Light
-
+@onready var writer_spot: Node3D = $WriterSpot
 
 func _ready():
 	light.visible = false

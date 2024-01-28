@@ -74,8 +74,9 @@ layout_mode = 2
 [node name="Paint" type="ProgressBar" parent="HUD/M/VB"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-max_value = 200.0
+max_value = 150.0
 value = 10.0
+allow_greater = true
 fill_mode = 3
 show_percentage = false
 
@@ -83,6 +84,10 @@ show_percentage = false
 layout_mode = 2
 text = "Paint
 "
+
+[node name="WriteCam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 2.38419e-07, 1.94746, 1.90146)
+fov = 100.0
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
