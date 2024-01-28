@@ -25,10 +25,6 @@ font = ExtResource("2_vwgru")
 outline_size = 5
 uppercase = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995542, 0.0943168, 0, -0.0943168, 0.995542, 0, 0, 2.59363)
-fov = 90.0
-
 [node name="Light" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.986937, -0.161104, 0, 0.161104, 0.986937, 0, -0.783159, 0.81771)
 light_color = Color(0.576471, 0.972549, 0.72549, 1)
