@@ -208,6 +208,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.971, 0, -59.8346)
 
 [node name="Node3D6" type="Node3D" parent="Stuff"]
 
+[node name="Node3D9" parent="Stuff" instance=ExtResource("8_opfrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -42.9123)
+
+[node name="Node3D10" parent="Stuff" instance=ExtResource("8_opfrw")]
+transform = Transform3D(0.0670575, 0, 0.997749, 0, 1, 0, -0.997749, 0, 0.0670575, 29.4766, 0, -0.756702)
+
+[node name="Node3D11" parent="Stuff" instance=ExtResource("8_opfrw")]
+transform = Transform3D(0.0670575, 0, 0.997749, 0, 1, 0, -0.997749, 0, 0.0670575, -19.8506, 0, -21.888)
+
 [node name="Paint" type="Node3D" parent="."]
 
 [node name="PaintCan" parent="Paint" instance=ExtResource("6_gs33b")]
