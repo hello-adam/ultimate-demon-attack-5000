@@ -10,7 +10,6 @@ extends Node3D
 	get:
 		return $Label3D.text
 
-@onready var camera: Camera3D = $Camera3D
 @onready var light: Node3D = $Light
 @onready var writer_spot: Node3D = $WriterSpot
 
