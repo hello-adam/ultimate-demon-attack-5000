@@ -9,6 +9,12 @@ func _ready():
 		$Music/Menu.play()
 	console.jam_connect = jc
 	hud_menu.get_popup().id_pressed.connect(_on_menu_selection)
+	console.visible = false
+	
+func _on_game_time_limit_timeout():
+	if jc.server:
+		print("Game time limit reached - shutting down...")
+		jc.server.shut_down()
 
 func _on_console_pressed():
 	console.visible = not console.visible
@@ -25,9 +31,10 @@ func _on_menu_selection(id: int):
 func _on_jam_connect_player_disconnected(pid: int, pinfo):
 	$Level1.remove_player(pid)
 
-func _on_jam_connect_player_verified(pid: int, pinfo):
-	var player_name = pinfo.get("name", "<>")
-	$Level1.spawn_player(pid, player_name)
+func _on_jam_connect_player_connected(pid: int, username: String) -> void:
+	$GameTimeLimit.stop()
+	$GameTimeLimit.start(60 * 60)
+	$Level1.spawn_player(pid, username)
 	stop_menu_music.rpc()
 
 @rpc("reliable")

@@ -1,7 +1,5 @@
 @tool
-extends VBoxContainer
-
-@onready var title: Label = $TopBar/Title
+extends JamEditorPluginPage
 
 @onready var load_locker: ScopeLocker = $LoadLocker
 
@@ -15,23 +13,19 @@ extends VBoxContainer
 @onready var session_data: TextEdit = $M/HB/Details/SessionData
 
 @onready var terminate_btn: Button = $M/HB/Details/HB/BtnDelete
-
-@onready var err_stack: VBoxContainer = $Errors
-var msg_scn = preload("res://addons/jam_launch/ui/MessagePanel.tscn")
-
-signal go_back()
+var disable_terminate := false
 
 var project_data = []
-var project_api: ProjectApi
 
 var refresh_retries = 0
 
+var project_name: String
 var project_id: String
 var sessions: Array = []
 
 var filter_active_sessions := true
 
-var session_details: Dictionary = {} :
+var session_details: Dictionary = {}:
 	set(val):
 		session_details = val
 		var sid = session_details.get("id")
@@ -41,31 +35,33 @@ var session_details: Dictionary = {} :
 			session_title.text = "Session " + session_details.get("join_code", sid)
 			session_details_layout.visible = true
 
-func _dashboard():
-	return get_parent()
-
-func _plugin() -> EditorPlugin:
-	return _dashboard().plugin
-
-func initialize():
+func _page_init():
+	$M/HB/Details/HB/BtnLogs.icon = dashboard.editor_icon("Script")
 	session_details_layout.visible = false
 	log_popup.visible = false
-	project_api = _dashboard().project_api
 
-func show_game(proj_id: String, project_name: String):
+func show_init():
+	if len(project_name) > 0:
+		dashboard.toolbar_title.text = "Sessions: %s" % project_name
+
+func refresh_page():
+	refresh_sessions()
+
+func show_game(proj_id: String, proj_name: String):
 	project_id = proj_id
-	$M/HB/Details/HB/BtnLogs.icon = _plugin().get_editor_interface().get_base_control().get_theme_icon("Script", "EditorIcons")
-	$TopBar/BtnBack.icon = _plugin().get_editor_interface().get_base_control().get_theme_icon("Back", "EditorIcons")
-	$TopBar/BtnRefresh.icon = _plugin().get_editor_interface().get_base_control().get_theme_icon("Reload", "EditorIcons")
-	title.text = project_name + " - sessions"
+	project_name = proj_name
+	dashboard.toolbar_title.text = "Sessions: %s" % project_name
 	refresh_sessions()
 
 func refresh_sessions():
+	if len(project_id) < 1:
+		return
+	
 	if load_locker.is_locked():
 		show_error("cannot refresh sessions while loading...", 5.0)
 		return
 	
-	var lock = load_locker.get_lock()
+	var _lock = load_locker.get_lock()
 	session_details = {}
 	session_list.clear()
 	session_list.visible = false
@@ -116,7 +112,6 @@ func refresh_sessions():
 	else:
 		session_list.visible = true
 
-
 func _get_session_details(p, r, s):
 	if load_locker.is_locked():
 		show_error("cannot get session details while loading...", 5.0)
@@ -131,6 +126,9 @@ func _get_session_details(p, r, s):
 	
 	session_details = res.data
 	session_data.text = JSON.stringify(res.data, "  ")
+	
+	disable_terminate = session_details.get("force_terminated", false)
+	terminate_btn.disabled = disable_terminate
 
 func _show_logs(p, r, s) -> void:
 	log_popup.popup_centered_ratio(0.8)
@@ -146,34 +144,12 @@ func _show_logs(p, r, s) -> void:
 			log_text += " " + e["msg"] + "\n"
 		log_display.text = log_text
 
-func _on_btn_refresh_pressed() -> void:
-	refresh_sessions()
-
-func _on_btn_back_pressed() -> void:
-	go_back.emit()
-
-func _on_log_out_btn_pressed() -> void:
-	_dashboard().jwt().clear()
-
-func show_message(msg: String, auto_dismiss: float = 0.0):
-	var msg_box := msg_scn.instantiate()
-	err_stack.add_child(msg_box)
-	msg_box.message = msg
-	if auto_dismiss > 0.0:
-		msg_box.set_auto_dismiss(auto_dismiss)
-
-func show_error(msg: String, auto_dismiss: float = 0.0):
-	var msg_box := msg_scn.instantiate()
-	err_stack.add_child(msg_box)
-	msg_box.set_error_text(msg)
-	if auto_dismiss > 0.0:
-		msg_box.set_auto_dismiss(auto_dismiss)
-
+func show_error(msg: String, auto_dismiss: float=0.0):
+	dashboard.show_error(msg, auto_dismiss)
 
 func _on_load_locker_lock_changed(locked: bool):
-	$TopBar/BtnRefresh.disabled = locked
 	$M/HB/Details/HB/BtnLogs.disabled = locked
-	$M/HB/Details/HB/BtnDelete.disabled = locked
+	terminate_btn.disabled = locked or disable_terminate
 
 func _on_btn_logs_pressed():
 	var session_id = session_details.get("id")
@@ -199,7 +175,7 @@ func _on_confirm_delete_confirmed():
 		return
 	
 	session_details = {}
-
+	_get_session_details(project_id, release_id, session_id)
 
 func _on_session_list_item_selected(index):
 	if len(sessions) <= index or index < 0:
@@ -207,7 +183,6 @@ func _on_session_list_item_selected(index):
 	
 	var s = sessions[index]
 	_get_session_details(project_id, s["release_id"], s["id"])
-
 
 func _on_filter_item_selected(index):
 	if index == 0:

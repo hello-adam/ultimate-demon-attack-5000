@@ -118,14 +118,16 @@ func _apply_sync_state():
 			push_warning("no valid sync state")
 		return
 	if s.start_state != null and s.end_state != null:
-		var all_rotation = s.start_state["r"].lerp(s.end_state["r"], s.progress)
+		var y_rot = lerp_angle(s.start_state["r"].y, s.end_state["r"].y, s.progress)
+		var x_rot = lerp_angle(s.start_state["r"].x, s.end_state["r"].x, s.progress)
+		var z_rot = lerp_angle(s.start_state["r"].z, s.end_state["r"].z, s.progress)
 		position = s.start_state["p"].lerp(s.end_state["p"], s.progress)
 		if interacting:
-			rotation = all_rotation
+			rotation = Vector3(x_rot, y_rot, z_rot)
 		else:
-			rotation = Vector3(0, all_rotation.y, 0)
+			rotation = Vector3(0, y_rot, 0)
 			if camera and multiplayer.get_unique_id() == pid:
-				camera.rotation = Vector3(all_rotation.x, 0, 0)
+				camera.rotation = Vector3(x_rot, 0, 0)
 
 func _physics_process(delta):
 	if not multiplayer.is_server():
